@@ -1,0 +1,5 @@
+age,normalization,n_regions,r,r_squared,p_value,correlation_method
+p3,robust,8,-0.7559289460184544,0.5714285714285713,0.03001974528754441,Spearman
+p12,robust,8,,,,Spearman
+p20,robust,8,-0.3899448192056364,0.15205696202531646,0.3395897301354488,Spearman
+adult,robust,8,,,,Spearman

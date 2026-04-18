@@ -1,0 +1,4 @@
+age,normalization,n_regions,r,r_squared,p_value,correlation_method
+p3,zscore,8,0.9983234820307361,0.9966497747739734,1.1765717307329752e-08,Pearson
+p12,zscore,8,0.2733926464310812,0.07474353912259017,0.5123589549821196,Pearson
+p20,zscore,7,1.0,1.0,0.0,Pearson
