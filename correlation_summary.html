@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correlation Summary</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2c5282;
+            --accent: #3182ce;
+            --light-accent: #90cdf4;
+            --bg: #ffffff;
+            --code-bg: #1a202c;
+            --code-text: #e2e8f0;
+            --table-border: #cbd5e0;
+            --table-header: #edf2f7;
+            --table-alt: #f7fafc;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; max-width: 1100px; margin: 0 auto; padding: 2rem; line-height: 1.7; color: #333; background: var(--bg); }
+        h1 { color: var(--primary); border-bottom: 3px solid var(--accent); padding-bottom: 0.5rem; font-size: 2rem; }
+        h2 { color: var(--secondary); border-bottom: 2px solid var(--light-accent); padding-bottom: 0.3rem; margin-top: 2.5rem; font-size: 1.5rem; }
+        h3 { color: #2b6cb0; margin-top: 1.8rem; font-size: 1.2rem; }
+        h4 { color: #4a5568; margin-top: 1.5rem; font-size: 1.05rem; }
+        code { background: #edf2f7; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.9em; font-family: "SF Mono", Monaco, monospace; }
+        pre { background: var(--code-bg); color: var(--code-text); padding: 1.2rem; border-radius: 8px; overflow-x: auto; font-size: 0.85em; }
+        pre code { background: none; color: inherit; padding: 0; }
+        table { border-collapse: collapse; width: 100%; margin: 1.5rem 0; font-size: 0.9em; }
+        th, td { border: 1px solid var(--table-border); padding: 0.6rem 0.8rem; text-align: left; }
+        th { background: var(--table-header); font-weight: 600; color: var(--primary); }
+        tr:nth-child(even) { background: var(--table-alt); }
+        blockquote { border-left: 4px solid var(--accent); margin: 1.5rem 0; padding: 0.5rem 1rem; color: #4a5568; background: #f7fafc; border-radius: 0 8px 8px 0; }
+        hr { border: none; border-top: 2px solid #e2e8f0; margin: 2.5rem 0; }
+        .mermaid { background: #f7fafc; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; text-align: center; }
+        strong { color: var(--secondary); }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        ul, ol { margin: 1rem 0; padding-left: 2rem; }
+        li { margin: 0.3rem 0; }
+        .MathJax { font-size: 1.1em !important; }
+        .nav { background: #f7fafc; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; }
+        .nav a { margin-right: 1rem; }
+        @media print { body { max-width: 100%; padding: 1rem; } pre { white-space: pre-wrap; } }
+    </style>
+</head>
+<body>
+<h1>Correlation Summary: Match to Prior Results</h1>
+<h2>Prior results (reference)</h2>
+<p>Cell/pixel count correlations used as the reference to match.</p>
+<table>
+<thead><tr><th>Age</th><th>r</th><th>p</th><th>Significance</th></tr></thead><tbody>
+<tr><td>p3</td><td>0.0655</td><td>0.8775</td><td>ns</td></tr>
+<tr><td>p12</td><td>0.3366</td><td>0.415</td><td>ns</td></tr>
+<tr><td>p20</td><td>0.6533</td><td>0.0789</td><td>ns</td></tr>
+<tr><td>adult</td><td>0.7363</td><td>0.0373</td><td>significant</td></tr>
+</tbody></table>
+<h2>Closest match</h2>
+<p>The dataset that most closely matches the prior results is <strong>by_percent_total</strong> (r_RMSE = 0.0329).</p>
+<h2>Best match with positive trend (r increasing)</h2>
+<p>The best match with r increasing over p3→p12→p20→adult is <strong>by_percent_total</strong> — imputed_data, none (r_RMSE = 0.0329).</p>
+<h2>All datasets (by match to prior)</h2>
+<p>Datasets ordered from closest to farthest from the prior r values. Each shows r_RMSE and per-age r, r², p.</p>
+<h3>by_percent_total</h3>
+<p><strong>r_RMSE</strong> = 0.0329</p>
+<table>
+<thead><tr><th>Age</th><th>r</th><th>r²</th><th>p_value</th><th>n_regions</th></tr></thead><tbody>
+<tr><td>p3</td><td>0.0235</td><td>0.0005542</td><td>0.9559</td><td>8</td></tr>
+<tr><td>p12</td><td>0.3773</td><td>0.1424</td><td>0.3568</td><td>8</td></tr>
+<tr><td>p20</td><td>0.6790</td><td>0.4610</td><td>0.0641</td><td>8</td></tr>
+<tr><td>adult</td><td>0.7202</td><td>0.5187</td><td>0.0439</td><td>8</td></tr>
+</tbody></table>
+<h4>All computation methods</h4>
+<table>
+<thead><tr><th>Analysis</th><th>Normalization</th><th>r_RMSE</th><th>r ↑</th><th>p3 r</th><th>p3 p</th><th>p12 r</th><th>p12 p</th><th>p20 r</th><th>p20 p</th><th>adult r</th><th>adult p</th></tr></thead><tbody>
+<tr><td>imputed_data</td><td>none</td><td>0.0329</td><td>Yes</td><td>0.0235</td><td>0.9559</td><td>0.3773</td><td>0.3568</td><td>0.6790</td><td>0.0641</td><td>0.7202</td><td>0.0439</td></tr>
+<tr><td>averaged_replicates</td><td>none</td><td>0.0329</td><td>Yes</td><td>0.0235</td><td>0.9559</td><td>0.3773</td><td>0.3568</td><td>0.6790</td><td>0.0641</td><td>0.7202</td><td>0.0439</td></tr>
+<tr><td>complete_pairs</td><td>zscore</td><td>0.1357</td><td>No</td><td>0.2764</td><td>0.5075</td><td>0.4399</td><td>0.2754</td><td>0.6464</td><td>0.0833</td><td>—</td><td>—</td></tr>
+<tr><td>imputed_data</td><td>log</td><td>0.1455</td><td>No</td><td>0.1767</td><td>0.6755</td><td>0.4610</td><td>0.2502</td><td>0.6761</td><td>0.0657</td><td>0.4991</td><td>0.2080</td></tr>
+<tr><td>complete_pairs</td><td>none</td><td>0.1507</td><td>No</td><td>-0.1734</td><td>0.6813</td><td>0.4384</td><td>0.2772</td><td>0.6790</td><td>0.0641</td><td>—</td><td>—</td></tr>
+<tr><td>averaged_replicates</td><td>log</td><td>0.1547</td><td>No</td><td>0.3003</td><td>0.4699</td><td>0.4502</td><td>0.2630</td><td>0.6761</td><td>0.0657</td><td>0.5715</td><td>0.1389</td></tr>
+<tr><td>complete_pairs</td><td>log</td><td>0.1997</td><td>No</td><td>-0.1543</td><td>0.7153</td><td>0.6028</td><td>0.1137</td><td>0.6761</td><td>0.0657</td><td>—</td><td>—</td></tr>
+<tr><td>averaged_replicates</td><td>zscore</td><td>0.5110</td><td>No</td><td>0.1209</td><td>0.7756</td><td>-0.3723</td><td>0.3638</td><td>0.6464</td><td>0.0833</td><td>0.0022</td><td>0.9959</td></tr>
+<tr><td>averaged_replicates</td><td>combined</td><td>0.6689</td><td>No</td><td>0.6724</td><td>0.0677</td><td>-0.1021</td><td>0.8099</td><td>-0.2432</td><td>0.5616</td><td>0.0844</td><td>0.8425</td></tr>
+<tr><td>averaged_replicates</td><td>robust</td><td>0.7848</td><td>No</td><td>—</td><td>—</td><td>-0.0422</td><td>0.9210</td><td>-0.3899</td><td>0.3396</td><td>—</td><td>—</td></tr>
+<tr><td>complete_pairs</td><td>combined</td><td>0.7862</td><td>No</td><td>-0.8536</td><td>0.0070</td><td>0.7900</td><td>0.0197</td><td>-0.2432</td><td>0.5616</td><td>—</td><td>—</td></tr>
+<tr><td>complete_pairs</td><td>robust</td><td>0.8296</td><td>No</td><td>0.6151</td><td>0.1046</td><td>-0.4846</td><td>0.2237</td><td>-0.3899</td><td>0.3396</td><td>—</td><td>—</td></tr>
+<tr><td>imputed_data</td><td>combined</td><td>0.8356</td><td>No</td><td>-0.2192</td><td>0.6020</td><td>0.1389</td><td>0.7428</td><td>-0.2432</td><td>0.5616</td><td>-0.6309</td><td>0.0935</td></tr>
+<tr><td>imputed_data</td><td>zscore</td><td>0.8767</td><td>No</td><td>0.4753</td><td>0.2340</td><td>-0.5376</td><td>0.1693</td><td>0.6464</td><td>0.0833</td><td>-0.7273</td><td>0.0409</td></tr>
+<tr><td>imputed_data</td><td>robust</td><td>0.9389</td><td>No</td><td>-0.7559</td><td>0.0300</td><td>—</td><td>—</td><td>-0.3899</td><td>0.3396</td><td>—</td><td>—</td></tr>
+</tbody></table>
+<h3>by_section_masked_gauss</h3>
+<p><strong>r_RMSE</strong> = 0.4271</p>
+<table>
+<thead><tr><th>Age</th><th>r</th><th>r²</th><th>p_value</th><th>n_regions</th></tr></thead><tbody>
+<tr><td>p3</td><td>0.0906</td><td>0.0082</td><td>0.8311</td><td>8</td></tr>
+<tr><td>p12</td><td>0.5580</td><td>0.3113</td><td>0.1507</td><td>8</td></tr>
+<tr><td>p20</td><td>0.8864</td><td>0.7857</td><td>0.0034</td><td>8</td></tr>
+<tr><td>adult</td><td>-0.0547</td><td>0.0030</td><td>0.8976</td><td>8</td></tr>
+</tbody></table>
+<h4>All computation methods</h4>
+<table>
+<thead><tr><th>Analysis</th><th>Normalization</th><th>r_RMSE</th><th>r ↑</th><th>p3 r</th><th>p3 p</th><th>p12 r</th><th>p12 p</th><th>p20 r</th><th>p20 p</th><th>adult r</th><th>adult p</th></tr></thead><tbody>
+<tr><td>complete_pairs</td><td>robust</td><td>0.2804</td><td>No</td><td>0.4809</td><td>0.2277</td><td>0.1104</td><td>0.7946</td><td>0.7638</td><td>0.0457</td><td>—</td><td>—</td></tr>
+<tr><td>imputed_data</td><td>zscore</td><td>0.3769</td><td>No</td><td>-0.2058</td><td>0.6248</td><td>0.7636</td><td>0.0275</td><td>0.3378</td><td>0.4131</td><td>0.2750</td><td>0.5097</td></tr>
+<tr><td>averaged_replicates</td><td>log</td><td>0.4168</td><td>No</td><td>0.0605</td><td>0.8868</td><td>0.5454</td><td>0.1621</td><td>0.8588</td><td>0.0063</td><td>-0.0440</td><td>0.9175</td></tr>
+<tr><td>imputed_data</td><td>log</td><td>0.4212</td><td>No</td><td>0.0609</td><td>0.8862</td><td>0.5457</td><td>0.1618</td><td>0.8575</td><td>0.0065</td><td>-0.0537</td><td>0.8994</td></tr>
+<tr><td>averaged_replicates</td><td>none</td><td>0.4271</td><td>No</td><td>0.0906</td><td>0.8311</td><td>0.5580</td><td>0.1507</td><td>0.8864</td><td>0.0034</td><td>-0.0547</td><td>0.8976</td></tr>
+<tr><td>imputed_data</td><td>none</td><td>0.4271</td><td>No</td><td>0.0906</td><td>0.8311</td><td>0.5580</td><td>0.1507</td><td>0.8864</td><td>0.0034</td><td>-0.0547</td><td>0.8976</td></tr>
+<tr><td>complete_pairs</td><td>none</td><td>0.5054</td><td>No</td><td>0.3908</td><td>0.3385</td><td>0.7299</td><td>0.0398</td><td>-0.0580</td><td>0.9017</td><td>—</td><td>—</td></tr>
+<tr><td>averaged_replicates</td><td>combined</td><td>0.5624</td><td>No</td><td>0.0456</td><td>0.9147</td><td>-0.1106</td><td>0.7944</td><td>-0.1490</td><td>0.7248</td><td>0.0872</td><td>0.8373</td></tr>
+<tr><td>complete_pairs</td><td>zscore</td><td>0.5757</td><td>No</td><td>0.9983</td><td>1.177e-08</td><td>0.2734</td><td>0.5124</td><td>1.0000</td><td>0</td><td>—</td><td>—</td></tr>
+<tr><td>averaged_replicates</td><td>zscore</td><td>0.5771</td><td>No</td><td>-0.0569</td><td>0.8936</td><td>0.3802</td><td>0.3528</td><td>-0.0855</td><td>0.8405</td><td>-0.1408</td><td>0.7394</td></tr>
+<tr><td>imputed_data</td><td>robust</td><td>0.5883</td><td>No</td><td>-0.0825</td><td>0.8461</td><td>0.2489</td><td>0.5522</td><td>-0.3511</td><td>0.3938</td><td>—</td><td>—</td></tr>
+<tr><td>imputed_data</td><td>combined</td><td>0.6414</td><td>No</td><td>0.5471</td><td>0.1605</td><td>-0.2536</td><td>0.5444</td><td>0.0044</td><td>0.9918</td><td>-0.0664</td><td>0.8758</td></tr>
+<tr><td>complete_pairs</td><td>log</td><td>0.6516</td><td>No</td><td>0.3894</td><td>0.3403</td><td>0.7106</td><td>0.0482</td><td>-0.3610</td><td>0.4263</td><td>—</td><td>—</td></tr>
+<tr><td>complete_pairs</td><td>combined</td><td>0.7298</td><td>No</td><td>0.9989</td><td>3.449e-09</td><td>-0.4422</td><td>0.2726</td><td>1.0000</td><td>0</td><td>—</td><td>—</td></tr>
+<tr><td>averaged_replicates</td><td>robust</td><td>0.8184</td><td>No</td><td>-0.1964</td><td>0.6411</td><td>0.1566</td><td>0.7111</td><td>-0.2160</td><td>0.6075</td><td>-0.6136</td><td>0.1057</td></tr>
+</tbody></table>
+<h3>by_section_masked_mean</h3>
+<p><strong>r_RMSE</strong> = 0.4363</p>
+<table>
+<thead><tr><th>Age</th><th>r</th><th>r²</th><th>p_value</th><th>n_regions</th></tr></thead><tbody>
+<tr><td>p3</td><td>0.1905</td><td>0.0363</td><td>0.6514</td><td>8</td></tr>
+<tr><td>p12</td><td>0.4610</td><td>0.2125</td><td>0.2503</td><td>8</td></tr>
+<tr><td>p20</td><td>0.8792</td><td>0.7730</td><td>0.0040</td><td>8</td></tr>
+<tr><td>adult</td><td>-0.0878</td><td>0.0077</td><td>0.8362</td><td>8</td></tr>
+</tbody></table>
+<h4>All computation methods</h4>
+<table>
+<thead><tr><th>Analysis</th><th>Normalization</th><th>r_RMSE</th><th>r ↑</th><th>p3 r</th><th>p3 p</th><th>p12 r</th><th>p12 p</th><th>p20 r</th><th>p20 p</th><th>adult r</th><th>adult p</th></tr></thead><tbody>
+<tr><td>averaged_replicates</td><td>log</td><td>0.4226</td><td>No</td><td>0.1603</td><td>0.7045</td><td>0.4383</td><td>0.2773</td><td>0.8394</td><td>0.0091</td><td>-0.0763</td><td>0.8575</td></tr>
+<tr><td>imputed_data</td><td>log</td><td>0.4272</td><td>No</td><td>0.1642</td><td>0.6975</td><td>0.4386</td><td>0.2770</td><td>0.8422</td><td>0.0087</td><td>-0.0849</td><td>0.8417</td></tr>
+<tr><td>averaged_replicates</td><td>none</td><td>0.4363</td><td>No</td><td>0.1905</td><td>0.6514</td><td>0.4610</td><td>0.2503</td><td>0.8792</td><td>0.0040</td><td>-0.0878</td><td>0.8362</td></tr>
+<tr><td>imputed_data</td><td>none</td><td>0.4363</td><td>No</td><td>0.1905</td><td>0.6514</td><td>0.4610</td><td>0.2503</td><td>0.8792</td><td>0.0040</td><td>-0.0878</td><td>0.8362</td></tr>
+<tr><td>imputed_data</td><td>robust</td><td>0.4478</td><td>No</td><td>-0.0825</td><td>0.8461</td><td>0.1757</td><td>0.6772</td><td>-0.0909</td><td>0.8305</td><td>—</td><td>—</td></tr>
+<tr><td>imputed_data</td><td>zscore</td><td>0.5492</td><td>No</td><td>-0.1510</td><td>0.7211</td><td>0.0594</td><td>0.8890</td><td>-0.0775</td><td>0.8553</td><td>-0.0045</td><td>0.9916</td></tr>
+<tr><td>complete_pairs</td><td>none</td><td>0.5507</td><td>No</td><td>0.6294</td><td>0.0945</td><td>0.5633</td><td>0.1460</td><td>-0.0818</td><td>0.8616</td><td>—</td><td>—</td></tr>
+<tr><td>complete_pairs</td><td>robust</td><td>0.5973</td><td>No</td><td>0.3795</td><td>0.3538</td><td>-0.6429</td><td>0.0856</td><td>0.7638</td><td>0.0457</td><td>—</td><td>—</td></tr>
+<tr><td>imputed_data</td><td>combined</td><td>0.6112</td><td>No</td><td>0.6013</td><td>0.1149</td><td>0.1606</td><td>0.7041</td><td>-0.1113</td><td>0.7931</td><td>-0.0328</td><td>0.9385</td></tr>
+<tr><td>complete_pairs</td><td>zscore</td><td>0.6354</td><td>No</td><td>0.9980</td><td>1.911e-08</td><td>-0.1340</td><td>0.7518</td><td>1.0000</td><td>0</td><td>—</td><td>—</td></tr>
+<tr><td>averaged_replicates</td><td>robust</td><td>0.6734</td><td>No</td><td>—</td><td>—</td><td>0.0260</td><td>0.9513</td><td>0.1578</td><td>0.7091</td><td>-0.2729</td><td>0.5131</td></tr>
+<tr><td>complete_pairs</td><td>log</td><td>0.6772</td><td>No</td><td>0.6091</td><td>0.1090</td><td>0.5329</td><td>0.1739</td><td>-0.3673</td><td>0.4176</td><td>—</td><td>—</td></tr>
+<tr><td>complete_pairs</td><td>combined</td><td>0.7411</td><td>No</td><td>0.9990</td><td>2.213e-09</td><td>-0.4733</td><td>0.2362</td><td>1.0000</td><td>0</td><td>—</td><td>—</td></tr>
+<tr><td>averaged_replicates</td><td>combined</td><td>0.7575</td><td>No</td><td>0.0500</td><td>0.9064</td><td>-0.5845</td><td>0.1281</td><td>0.0324</td><td>0.9393</td><td>-0.2939</td><td>0.4798</td></tr>
+<tr><td>averaged_replicates</td><td>zscore</td><td>0.7582</td><td>No</td><td>-0.0388</td><td>0.9273</td><td>0.1085</td><td>0.7982</td><td>-0.1345</td><td>0.7509</td><td>-0.5349</td><td>0.1720</td></tr>
+</tbody></table>
+<h3>by_section_masked_median</h3>
+<p><strong>r_RMSE</strong> = 0.4512</p>
+<table>
+<thead><tr><th>Age</th><th>r</th><th>r²</th><th>p_value</th><th>n_regions</th></tr></thead><tbody>
+<tr><td>p3</td><td>-0.1490</td><td>0.0222</td><td>0.7248</td><td>8</td></tr>
+<tr><td>p12</td><td>0.0919</td><td>0.0085</td><td>0.8286</td><td>8</td></tr>
+<tr><td>p20</td><td>0.7712</td><td>0.5947</td><td>0.0250</td><td>8</td></tr>
+<tr><td>adult</td><td>-0.0971</td><td>0.0094</td><td>0.8191</td><td>8</td></tr>
+</tbody></table>
+<h4>All computation methods</h4>
+<table>
+<thead><tr><th>Analysis</th><th>Normalization</th><th>r_RMSE</th><th>r ↑</th><th>p3 r</th><th>p3 p</th><th>p12 r</th><th>p12 p</th><th>p20 r</th><th>p20 p</th><th>adult r</th><th>adult p</th></tr></thead><tbody>
+<tr><td>complete_pairs</td><td>robust</td><td>0.1858</td><td>No</td><td>0.3660</td><td>0.3726</td><td>0.2236</td><td>0.5945</td><td>0.6757</td><td>0.0957</td><td>—</td><td>—</td></tr>
+<tr><td>imputed_data</td><td>zscore</td><td>0.4296</td><td>No</td><td>0.4060</td><td>0.3183</td><td>-0.1440</td><td>0.7338</td><td>0.0307</td><td>0.9424</td><td>0.6758</td><td>0.0658</td></tr>
+<tr><td>averaged_replicates</td><td>log</td><td>0.4435</td><td>No</td><td>-0.1642</td><td>0.6977</td><td>0.0960</td><td>0.8211</td><td>0.7164</td><td>0.0456</td><td>-0.0836</td><td>0.8439</td></tr>
+<tr><td>imputed_data</td><td>log</td><td>0.4470</td><td>No</td><td>-0.1685</td><td>0.6899</td><td>0.0962</td><td>0.8207</td><td>0.7227</td><td>0.0428</td><td>-0.0895</td><td>0.8330</td></tr>
+<tr><td>imputed_data</td><td>none</td><td>0.4512</td><td>No</td><td>-0.1490</td><td>0.7248</td><td>0.0919</td><td>0.8286</td><td>0.7712</td><td>0.0250</td><td>-0.0971</td><td>0.8191</td></tr>
+<tr><td>averaged_replicates</td><td>none</td><td>0.4512</td><td>No</td><td>-0.1490</td><td>0.7248</td><td>0.0919</td><td>0.8286</td><td>0.7712</td><td>0.0250</td><td>-0.0971</td><td>0.8191</td></tr>
+<tr><td>averaged_replicates</td><td>robust</td><td>0.4625</td><td>No</td><td>0</td><td>1.0000</td><td>0.4500</td><td>0.2632</td><td>0.5714</td><td>0.1390</td><td>-0.1757</td><td>0.6772</td></tr>
+<tr><td>averaged_replicates</td><td>combined</td><td>0.5160</td><td>No</td><td>0.1333</td><td>0.7530</td><td>-0.0270</td><td>0.9493</td><td>-0.1142</td><td>0.7877</td><td>0.1538</td><td>0.7162</td></tr>
+<tr><td>complete_pairs</td><td>zscore</td><td>0.6258</td><td>No</td><td>0.9994</td><td>4.264e-10</td><td>-0.0905</td><td>0.8312</td><td>1.0000</td><td>1.411e-39</td><td>—</td><td>—</td></tr>
+<tr><td>imputed_data</td><td>combined</td><td>0.6732</td><td>No</td><td>-0.0849</td><td>0.8416</td><td>-0.2045</td><td>0.6271</td><td>-0.1003</td><td>0.8132</td><td>-0.2278</td><td>0.5874</td></tr>
+<tr><td>complete_pairs</td><td>none</td><td>0.7099</td><td>No</td><td>0.6852</td><td>0.0607</td><td>-0.0949</td><td>0.8231</td><td>-0.3171</td><td>0.4883</td><td>—</td><td>—</td></tr>
+<tr><td>averaged_replicates</td><td>zscore</td><td>0.7434</td><td>No</td><td>-0.2347</td><td>0.5759</td><td>-0.2937</td><td>0.4802</td><td>0.2198</td><td>0.6010</td><td>-0.5028</td><td>0.2041</td></tr>
+<tr><td>complete_pairs</td><td>combined</td><td>0.7458</td><td>No</td><td>0.9991</td><td>2.08e-09</td><td>-0.4862</td><td>0.2218</td><td>1.0000</td><td>0</td><td>—</td><td>—</td></tr>
+<tr><td>imputed_data</td><td>robust</td><td>0.7578</td><td>No</td><td>0.2474</td><td>0.5546</td><td>—</td><td>—</td><td>-0.4029</td><td>0.3223</td><td>—</td><td>—</td></tr>
+<tr><td>complete_pairs</td><td>log</td><td>0.7651</td><td>No</td><td>0.6454</td><td>0.0839</td><td>-0.0930</td><td>0.8266</td><td>-0.4581</td><td>0.3013</td><td>—</td><td>—</td></tr>
+</tbody></table>
+<h3>by_section_raw</h3>
+<p><strong>r_RMSE</strong> = 0.7551</p>
+<table>
+<thead><tr><th>Age</th><th>r</th><th>r²</th><th>p_value</th><th>n_regions</th></tr></thead><tbody>
+<tr><td>p3</td><td>0.3694</td><td>0.1365</td><td>0.3678</td><td>8</td></tr>
+<tr><td>p12</td><td>0.8659</td><td>0.7498</td><td>0.0054</td><td>8</td></tr>
+<tr><td>p20</td><td>0.8668</td><td>0.7513</td><td>0.0053</td><td>8</td></tr>
+<tr><td>adult</td><td>-0.6285</td><td>0.3950</td><td>0.0951</td><td>8</td></tr>
+</tbody></table>
+<h4>All computation methods</h4>
+<table>
+<thead><tr><th>Analysis</th><th>Normalization</th><th>r_RMSE</th><th>r ↑</th><th>p3 r</th><th>p3 p</th><th>p12 r</th><th>p12 p</th><th>p20 r</th><th>p20 p</th><th>adult r</th><th>adult p</th></tr></thead><tbody>
+<tr><td>imputed_data</td><td>robust</td><td>0.3666</td><td>No</td><td>-0.0825</td><td>0.8461</td><td>-0.2236</td><td>0.5945</td><td>0.3938</td><td>0.3344</td><td>—</td><td>—</td></tr>
+<tr><td>complete_pairs</td><td>robust</td><td>0.4031</td><td>No</td><td>0.4816</td><td>0.2269</td><td>-0.2236</td><td>0.5945</td><td>0.6757</td><td>0.0957</td><td>—</td><td>—</td></tr>
+<tr><td>averaged_replicates</td><td>robust</td><td>0.4778</td><td>No</td><td>0.0845</td><td>0.8423</td><td>0.1750</td><td>0.6785</td><td>0</td><td>1.0000</td><td>0.0581</td><td>0.8913</td></tr>
+<tr><td>complete_pairs</td><td>none</td><td>0.5142</td><td>No</td><td>0.6511</td><td>0.0803</td><td>0.9090</td><td>0.0018</td><td>0.3032</td><td>0.5086</td><td>—</td><td>—</td></tr>
+<tr><td>averaged_replicates</td><td>combined</td><td>0.5381</td><td>No</td><td>0.2156</td><td>0.6081</td><td>0.2590</td><td>0.5356</td><td>-0.1081</td><td>0.7988</td><td>-0.0052</td><td>0.9903</td></tr>
+<tr><td>imputed_data</td><td>combined</td><td>0.6126</td><td>No</td><td>0.7802</td><td>0.0224</td><td>0.5786</td><td>0.1329</td><td>0.2567</td><td>0.5395</td><td>-0.1438</td><td>0.7340</td></tr>
+<tr><td>imputed_data</td><td>zscore</td><td>0.6611</td><td>No</td><td>0.3545</td><td>0.3889</td><td>-0.5840</td><td>0.1285</td><td>0.0725</td><td>0.8646</td><td>0.0437</td><td>0.9181</td></tr>
+<tr><td>complete_pairs</td><td>combined</td><td>0.6638</td><td>No</td><td>0.9998</td><td>1.024e-11</td><td>-0.2369</td><td>0.5722</td><td>1.0000</td><td>7.982e-39</td><td>—</td><td>—</td></tr>
+<tr><td>averaged_replicates</td><td>log</td><td>0.6839</td><td>No</td><td>0.3253</td><td>0.4318</td><td>0.8113</td><td>0.0145</td><td>0.7986</td><td>0.0175</td><td>-0.5115</td><td>0.1951</td></tr>
+<tr><td>averaged_replicates</td><td>zscore</td><td>0.6933</td><td>No</td><td>0.1001</td><td>0.8136</td><td>-0.5962</td><td>0.1188</td><td>-0.1467</td><td>0.7289</td><td>0.0947</td><td>0.8235</td></tr>
+<tr><td>imputed_data</td><td>log</td><td>0.6944</td><td>No</td><td>0.3540</td><td>0.3896</td><td>0.8110</td><td>0.0146</td><td>0.8031</td><td>0.0164</td><td>-0.5278</td><td>0.1788</td></tr>
+<tr><td>averaged_replicates</td><td>none</td><td>0.7551</td><td>No</td><td>0.3694</td><td>0.3678</td><td>0.8659</td><td>0.0054</td><td>0.8668</td><td>0.0053</td><td>-0.6285</td><td>0.0951</td></tr>
+<tr><td>imputed_data</td><td>none</td><td>0.7551</td><td>No</td><td>0.3694</td><td>0.3678</td><td>0.8659</td><td>0.0054</td><td>0.8668</td><td>0.0053</td><td>-0.6285</td><td>0.0951</td></tr>
+<tr><td>complete_pairs</td><td>log</td><td>0.8042</td><td>No</td><td>0.6026</td><td>0.1139</td><td>0.8746</td><td>0.0045</td><td>-0.5139</td><td>0.2381</td><td>—</td><td>—</td></tr>
+<tr><td>complete_pairs</td><td>zscore</td><td>0.8581</td><td>No</td><td>0.9992</td><td>1.28e-09</td><td>-0.7667</td><td>0.0265</td><td>1.0000</td><td>0</td><td>—</td><td>—</td></tr>
+</tbody></table>
+<h3>by_section_dist_weighted</h3>
+<p><strong>r_RMSE</strong> = 0.8128</p>
+<table>
+<thead><tr><th>Age</th><th>r</th><th>r²</th><th>p_value</th><th>n_regions</th></tr></thead><tbody>
+<tr><td>p3</td><td>0.5575</td><td>0.3108</td><td>0.1511</td><td>8</td></tr>
+<tr><td>p12</td><td>0.8742</td><td>0.7642</td><td>0.0045</td><td>8</td></tr>
+<tr><td>p20</td><td>0.8585</td><td>0.7370</td><td>0.0064</td><td>8</td></tr>
+<tr><td>adult</td><td>-0.7022</td><td>0.4931</td><td>0.0521</td><td>8</td></tr>
+</tbody></table>
+<h4>All computation methods</h4>
+<table>
+<thead><tr><th>Analysis</th><th>Normalization</th><th>r_RMSE</th><th>r ↑</th><th>p3 r</th><th>p3 p</th><th>p12 r</th><th>p12 p</th><th>p20 r</th><th>p20 p</th><th>adult r</th><th>adult p</th></tr></thead><tbody>
+<tr><td>imputed_data</td><td>combined</td><td>0.4600</td><td>No</td><td>-0.0877</td><td>0.8364</td><td>0.4458</td><td>0.2683</td><td>-0.0702</td><td>0.8689</td><td>0.2002</td><td>0.6346</td></tr>
+<tr><td>imputed_data</td><td>robust</td><td>0.5123</td><td>No</td><td>-0.2474</td><td>0.5546</td><td>-0.1757</td><td>0.6772</td><td>0</td><td>1.0000</td><td>—</td><td>—</td></tr>
+<tr><td>averaged_replicates</td><td>zscore</td><td>0.5360</td><td>No</td><td>-0.5390</td><td>0.1680</td><td>0.5301</td><td>0.1766</td><td>-0.1621</td><td>0.7013</td><td>0.4508</td><td>0.2622</td></tr>
+<tr><td>complete_pairs</td><td>none</td><td>0.5388</td><td>No</td><td>0.6764</td><td>0.0655</td><td>0.9209</td><td>0.0012</td><td>0.2581</td><td>0.5763</td><td>—</td><td>—</td></tr>
+<tr><td>complete_pairs</td><td>zscore</td><td>0.5744</td><td>No</td><td>0.9979</td><td>2.393e-08</td><td>0.3205</td><td>0.4389</td><td>1.0000</td><td>0</td><td>—</td><td>—</td></tr>
+<tr><td>averaged_replicates</td><td>combined</td><td>0.6128</td><td>No</td><td>0.2764</td><td>0.5075</td><td>-0.1832</td><td>0.6641</td><td>-0.1323</td><td>0.7548</td><td>-0.0188</td><td>0.9647</td></tr>
+<tr><td>complete_pairs</td><td>combined</td><td>0.6721</td><td>No</td><td>0.9999</td><td>2.485e-12</td><td>-0.2650</td><td>0.5258</td><td>1.0000</td><td>0</td><td>—</td><td>—</td></tr>
+<tr><td>complete_pairs</td><td>robust</td><td>0.6815</td><td>No</td><td>0.4551</td><td>0.2572</td><td>-0.6562</td><td>0.0772</td><td>0.1474</td><td>0.7524</td><td>—</td><td>—</td></tr>
+<tr><td>averaged_replicates</td><td>robust</td><td>0.6827</td><td>No</td><td>0.3842</td><td>0.3474</td><td>-0.4214</td><td>0.2984</td><td>0</td><td>1.0000</td><td>-0.1364</td><td>0.7474</td></tr>
+<tr><td>averaged_replicates</td><td>log</td><td>0.7749</td><td>No</td><td>0.5190</td><td>0.1875</td><td>0.8428</td><td>0.0086</td><td>0.7739</td><td>0.0242</td><td>-0.6514</td><td>0.0802</td></tr>
+<tr><td>imputed_data</td><td>zscore</td><td>0.7867</td><td>No</td><td>-0.9445</td><td>0.0004095</td><td>0.6897</td><td>0.0584</td><td>-0.1608</td><td>0.7036</td><td>-0.0811</td><td>0.8486</td></tr>
+<tr><td>imputed_data</td><td>log</td><td>0.7868</td><td>No</td><td>0.5458</td><td>0.1617</td><td>0.8424</td><td>0.0087</td><td>0.7775</td><td>0.0232</td><td>-0.6687</td><td>0.0698</td></tr>
+<tr><td>averaged_replicates</td><td>none</td><td>0.8128</td><td>No</td><td>0.5575</td><td>0.1511</td><td>0.8742</td><td>0.0045</td><td>0.8585</td><td>0.0064</td><td>-0.7022</td><td>0.0521</td></tr>
+<tr><td>imputed_data</td><td>none</td><td>0.8128</td><td>No</td><td>0.5575</td><td>0.1511</td><td>0.8742</td><td>0.0045</td><td>0.8585</td><td>0.0064</td><td>-0.7022</td><td>0.0521</td></tr>
+<tr><td>complete_pairs</td><td>log</td><td>0.8380</td><td>No</td><td>0.6376</td><td>0.0890</td><td>0.9029</td><td>0.0021</td><td>-0.5546</td><td>0.1964</td><td>—</td><td>—</td></tr>
+</tbody></table>
+<script>
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    document.querySelectorAll('pre code').forEach(block => {
+        if (block.innerText.trim().startsWith('flowchart') || 
+            block.innerText.trim().startsWith('graph') || 
+            block.innerText.trim().startsWith('sequenceDiagram')) {
+            const div = document.createElement('div');
+            div.className = 'mermaid';
+            div.textContent = block.innerText;
+            block.parentElement.replaceWith(div);
+        }
+    });
+</script>
+</body>
+</html>

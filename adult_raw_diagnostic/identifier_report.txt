@@ -1,0 +1,8 @@
+=== Adult identifier report ===
+H2B adult identifiers (4): ['M762', 'M763', 'M773', 'M776']
+VSV adult identifiers (3): ['M608', 'M609', 'M610']
+Overlap (shared): NONE
+
+Adult H2B and VSV have no shared identifiers. Averaged-replicate adult
+correlation is between different animals in the two modalities. Complete-pairs
+adult has no pairs and is undefined.
